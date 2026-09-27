@@ -1,4 +1,4 @@
-# TMG 2nd-Line Independent Model Validation
+# 2nd-Line Independent Model Validation
 
 **A validation harness for auditing pre-trained NLP/LLM models used in insurance claims triage.**
 
@@ -55,16 +55,6 @@ tmg-nlp-validation/
 │   ├── fairlearn_audit.py        # Formal fairness metrics
 │   ├── generate_factsheet.py     # Executive artifact generator
 │   └── main.py                   # Full pipeline orchestrator
-│
-├── docs/
-│   └── TMG_2ndLine_Model_Risk_Assessment_Vendor_NLP.md
-│
-├── outputs/
-│   ├── bias_perturbation_results.csv
-│   ├── adversarial_results.csv
-│   ├── guardrail_results.csv
-│   ├── fairlearn_by_group.csv
-│   └── fairlearn_compliance.csv
 │
 ├── requirements.txt
 ├── .gitignore
