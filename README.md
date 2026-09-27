@@ -2,7 +2,7 @@
 
 **A validation harness for auditing pre-trained NLP/LLM models used in insurance claims triage.**
 
-This project demonstrates how a 2nd-line AI Model Risk Validation Specialist would independently challenge a vendor-supplied NLP model before production deployment. It aligns with the **NAIC AI Model Bulletin (Dec 2023)** and **NIST AI RMF 1.0**.
+Integrating **NAIC AI Model Bulletin (Dec 2023)** and **NIST AI RMF 1.0** to independently challenge a vendor-supplied NLP model before production deployment. 
 
 ---
 
