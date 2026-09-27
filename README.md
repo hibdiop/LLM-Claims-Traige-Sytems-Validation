@@ -92,7 +92,7 @@ python src/main.py
 | NIST AI RMF GOVERN 3.2 | Document risk decisions | Executive FactSheet with remediation conditions |
 
 
-##Technical Stack 
+## Technical Stack 
 - Python 3.9+
 - Hugging Face Transformers — Pre-trained model loading
 - PyTorch — Model inference
