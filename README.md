@@ -81,7 +81,7 @@ pip install -r requirements.txt
 
 # Run full validation suite
 python src/main.py
-
+```
 
 ## Framework Alignment
 
