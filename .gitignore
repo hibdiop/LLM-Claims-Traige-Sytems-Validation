@@ -1,0 +1,38 @@
+```gitignore
+# Virtual Environments
+venv/
+venev/
+env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data & Outputs (regenerated)
+data/*.csv
+outputs/*.csv
+outputs/*.json
+outputs/*.md
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+```
