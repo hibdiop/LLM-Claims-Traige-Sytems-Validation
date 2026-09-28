@@ -46,7 +46,7 @@ A complete validation harness that:
 
 ## Project Structure
 ```text
-tmg-nlp-validation/
+nlp-validation/
 ├── src/
 │   ├── validator.py              # Core model loader and scoring
 │   ├── bias_testing.py           # Demographic perturbation tests
@@ -64,24 +64,6 @@ tmg-nlp-validation/
 
 
 ---
-
-## Quick Start
-
-```bash
-# Clone
-git clone https://github.com/YOUR_USERNAME/tmg-nlp-validation.git
-cd tmg-nlp-validation
-
-# Set up environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run full validation suite
-python src/main.py
-```
 
 ## Framework Alignment
 
