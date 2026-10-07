@@ -1,35 +1,46 @@
 # 2nd-Line Independent Model Validation
 
-**A validation harness for auditing pre-trained NLP/LLM models used in insurance claims triage.**
+**A validation framework for auditing pre-trained NLP/LLM models used in insurance claims triage.**
 
 Integrating **NAIC AI Model Bulletin (Dec 2023)** and **NIST AI RMF 1.0** to independently challenge a vendor-supplied NLP model before production deployment. 
 
----
+
 
 ## The Problem
 
-First-line claims operations proposed integrating an off-the-shelf open-source Transformer to prioritize First Notice of Loss (FNOL) textual statements. The vendor reported 91.2% accuracy on standard test sets.
+When a customer files an insurance claim, known as the First Notice of Loss (FNOL), the claims operations team must decide how quickly to handle it and where to send it. To speed this up, the business team wanted to implement an off-the-shelf, open-source AI language model from a third-party vendor to automatically read customer statements and prioritize urgent or high-risk claims.
 
-As the independent second line, we asked three questions:
+**The vendor --->** claimed a 91.2% accuracy rate on standard benchmark tests. However, high accuracy on canned benchmarks does not guarantee the model is fair, secure, or compliant with insurance law.
 
-1. Does the model harbor **hidden proxy discrimination** when processing non-Anglo demographic identifiers?
-2. Can simple **adversarial syntax variations** manipulate the triage routing?
-3. Does the downstream **agentic automation engine** enforce mandatory statutory reserving caps?
+**As the independent risk audit team (second-line model validation) --->**  our job is to challenge the vendor's claims before real customers are affected. 
 
----
+We investigated three critical failure modes:
+
+-  ***Hidden Demographic Bias:*** Does the AI unintentionally penalize claimants based on names or cultural markers—such as treating identical claims differently just because of a non-Western name?
+
+-  ***Vulnerability to Manipulation:*** Can a user trick the model into misclassifying a claim simply by changing the wording, tone, or phrasing (e.g., using overly polite text to mask severe damage)?
+
+- ***Guardrail Violations:*** When the AI triggers automated downstream actions (like reserving payout funds), does the system strictly obey legal limits and safety caps, or does it risk making unauthorized financial commitments?
+
+
 
 ## The Solution
 
-A complete validation harness that:
+An end-to-end validation framework designed to stress-test the vendor's AI before it reaches production:
 
-- Loads a pre-trained Hugging Face checkpoint (`distilbert-base-uncased-finetuned-sst-2-english`) and treats it as a vendor black-box.
-- Runs **counterfactual demographic perturbation tests** to detect proxy bias.
-- Runs **adversarial syntax tests** to measure robustness against evasion.
-- Verifies **agentic guardrails** against statutory delegation caps.
-- Produces **Fairlearn Disparate Impact and Equalized Odds** metrics for audit-defensible compliance.
-- Generates an executive-facing **Model Risk FactSheet**.
+- ***Independent "Black-Box" Testing:*** Evaluates a standard pre-trained AI language model (distilbert-base-uncased-finetuned-sst-2-english) without relying on the vendor's internal claims or assumptions.
 
----
+- ***Name & Demographic Bias Testing:*** Swaps demographic markers (such as ethnic names) across identical insurance claims to verify whether the AI treats similar customers unequally (counterfactual perturbation).
+
+- ***Manipulation & Evasion Stress-Tests:*** Rewrites claims using polite or altered phrasing (adversarial syntax) to see if the AI can be tricked into underestimating damage severity.
+
+- ***Automated Guardrail Verification:*** Tests whether downstream automated actions respect legal and operational limits—ensuring high-value decisions are always flagged for mandatory human review.
+
+- ***Regulatory Fairness Metrics:*** Uses industry-standard fairness algorithms (Fairlearn Disparate Impact and Equalized Odds) to generate defensible mathematical proof of compliance with insurance regulations.
+
+- ***Executive Model Risk FactSheet:*** Compiles all findings, risk scores, and deployment recommendations into a clear summary for leadership and regulators.
+
+
 
 ## Key Findings
 
@@ -75,9 +86,9 @@ nlp-validation/
 
 
 ## Technical Stack 
-- Python 3.9+
-- Hugging Face Transformers — Pre-trained model loading
-- PyTorch — Model inference
-- Fairlearn — Fairness metrics and MetricFrame
-- Pandas / NumPy — Data manipulation
-- scikit-learn — Metric utilities
+- **Python 3.9+:** The core programming language used to build and orchestrate the entire testing pipeline.
+- **Hugging Face Transformers:** A standard AI library used to download and load the vendor's pre-trained language model into our testing environment.
+- **PyTorch:** The underlying computation engine that runs the model and generates risk scores from the claim text.
+- **Fairlearn:** A specialized toolkit used to calculate mathematically grounded bias and fairness metrics across demographic groups.
+- **Pandas / NumPy:** Data organization libraries used to structure, clean, and manipulate the batches of test claims and results.
+- **scikit-learn:** A machine learning utility library used to compute baseline performance, error rates, and evaluation statistics.
